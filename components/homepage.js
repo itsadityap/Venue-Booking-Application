@@ -34,7 +34,7 @@ function Homepage() {
                 height={500}
                 width={500}
                 className=" h-500 w-500"
-                alt="Businessman focusing on business"
+                alt="Calendar Image for Homepage Vector"
               />
             </div>
       </div>

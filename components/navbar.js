@@ -30,10 +30,18 @@ const Navbar = () => {
               <div className='pl-5 text-2xl tracking-tight font-bold text-gray-900 sm:text-3xl md:text-5xl'>
                   Venue Booking Portal
               </div>
+              <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+                <Link href={`/login`}>
+                <div className="ml-8 whitespace-nowrap cursor-pointer inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-fuchsia-800 hover:bg-fuchsia-600">
+                  Log in
+                </div>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </Popover>
+      
     </Fragment>
   )
 }
