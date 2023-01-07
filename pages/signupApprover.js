@@ -9,9 +9,9 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Navbar from '../components/navbar';
 import { Fragment } from 'react';
 import { LibraryIcon } from '@heroicons/react/solid';
+import Head from 'next/head';
 
 function Copyright(props) {
   return (
@@ -21,6 +21,17 @@ function Copyright(props) {
         Aditya Pandey
       </Link>{' '}
       {new Date().getFullYear()}
+    </Typography>
+  );
+}
+
+function RedirectLogin(props) {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Already have an account? '}
+      <Link color="inherit" href="/login"> 
+        Login
+      </Link>{' '}
     </Typography>
   );
 }
@@ -43,10 +54,16 @@ export default function SignUpApprover() {
 
   return (
     <Fragment>
-      <Navbar />
+      <Head>
+        <title>SignUp | Approver</title>
+        <meta
+          name="description"
+          content="Signup Page"
+        />
+      </Head>
       <div>
     <ThemeProvider theme={lightTheme}>
-      <Grid container component="main" sx={{ height: '10vh' }}>
+      <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
         <Grid
           md={7}
@@ -131,7 +148,9 @@ export default function SignUpApprover() {
             <Button className='hover:bg-fuchsia-600 hover:text-white' variant="outlined" type='submit' fullWidth disableElevation>
               Sign Up
             </Button>
-              <Copyright sx={{ mt: 5 }} />
+              <RedirectLogin sx={{ mt: 4 }} />
+              
+              <Copyright sx={{ mt: 4 }} />
             </Box>
           </Box>
         </Grid>
