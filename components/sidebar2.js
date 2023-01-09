@@ -5,10 +5,8 @@ import {
   MdDoneOutline,
   MdPendingActions,
   MdOutlineLogout,
-  MdCreate
 } from "react-icons/md";
 import { IoMdListBox } from "react-icons/io";
-import Link from "next/link";
 
 function SideNavbar() {
   return (
@@ -27,36 +25,22 @@ function SideNavbar() {
             </h1>
             <div className=" my-4 border-b border-gray-100 pb-4">
               <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <MdCreate className="text-2xl text-gray-600 group-hover:text-white " />
-                <Link href="/dashboardRequester/all">
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
-                  All Requests
-                </h3>
-                </Link>
-              </div>
-              <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
                 <IoMdListBox className="text-2xl text-gray-600 group-hover:text-white " />
-                <Link href="/dashboardRequester/all">
                 <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
                   All Requests
                 </h3>
-                </Link>
               </div>
               <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
                 <MdDoneOutline className="text-2xl text-gray-600 group-hover:text-white " />
-                <Link href="/dashboardRequester/approved">
                 <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
                   Approved Requests
                 </h3>
-                </Link>
               </div>
               <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
                 <MdPendingActions className="text-2xl text-gray-600 group-hover:text-white " />
-                <Link href="/dashboardRequester/pending">
                 <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
                   Pending Requests
                 </h3>
-                </Link>
               </div>
               
             </div>
