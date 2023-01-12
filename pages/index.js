@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 export default function Home() {
   return (
     <>
-    <Head>
+      <Head>
         <title>JUIT Venue Booking</title>
         <meta
           name="description"

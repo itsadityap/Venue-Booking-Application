@@ -1,9 +1,9 @@
 import React from 'react'
 import SideNavbar from '../../components/sidebar'
-import CardRequester from '../../components/CardRequester'
 import Head from 'next/head'
+import CreateRequest from '../../components/createRequest'
 
-const dashboardRequester = () => {
+const Create = () => {
   return (
     <div>
       <Head>
@@ -17,12 +17,10 @@ const dashboardRequester = () => {
         <SideNavbar />
       </div>
       <div className='ml-60 flex items-center justify-center h-screen '>
-        <CardRequester />
-        <CardRequester />
+        <CreateRequest />
       </div>
     </div>
-
   )
 }
 
-export default dashboardRequester
+export default Create
