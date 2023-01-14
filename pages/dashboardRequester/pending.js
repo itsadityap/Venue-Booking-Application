@@ -7,7 +7,7 @@ const pending = () => {
   return(
     <div>
       <Head>
-        <title>Dashboard Requester</title>
+        <title>Dashboard Requester | Pending</title>
         <meta
           name="description"
           content="Venue Booking Application Dashboard"
@@ -16,7 +16,7 @@ const pending = () => {
       <div>
         <SideNavbar />
       </div>
-      <div className='ml-60 flex items-center justify-center h-screen'>
+      <div className='flex flex-row flex-wrap ml-64 mt-5 items-center rounded-full'>
         <CardRequester />
       </div>
     </div>

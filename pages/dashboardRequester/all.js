@@ -1,4 +1,3 @@
-import React from 'react'
 import SideNavbar from '../../components/sidebar'
 import CardRequester from '../../components/CardRequester'
 import Head from 'next/head'
@@ -7,7 +6,7 @@ const dashboardRequester = () => {
   return (
     <div>
       <Head>
-        <title>Dashboard Requester</title>
+        <title>Dashboard Requester | All</title>
         <meta
           name="description"
           content="Venue Booking Application Dashboard"
@@ -16,12 +15,16 @@ const dashboardRequester = () => {
       <div>
         <SideNavbar />
       </div>
-      <div className='ml-60 flex items-center justify-center h-screen '>
+      <div className='flex flex-row flex-wrap ml-64 mt-5 items-center rounded-full'>
+        <CardRequester />
+        <CardRequester />
+        <CardRequester />
+        <CardRequester />
+        <CardRequester />
         <CardRequester />
         <CardRequester />
       </div>
     </div>
-
   )
 }
 

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -17,6 +16,9 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Head from 'next/head';
+import { useState } from 'react';
+import {useRouter} from 'next/router';
+import axios from 'axios';
 
 function Copyright(props) {
   return (
@@ -48,13 +50,46 @@ const lightTheme = createTheme({
 });
 
 export default function Login() {
-  const handleSubmit = (event) => {
+
+  const [ loginAs , setLoginAs ] = useState('requester');
+  const router = useRouter();
+
+  const authHandler = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    let baseurl = ''
+
+    if(loginAs==='requester')
+    {
+       baseurl = `http://localhost:4000/api/v1/user/login`
+    }
+    else
+    {
+       baseurl = `http://localhost:4000/api/v1/reviewer/login`
+    }
+    let email = data.get('email')
+    let password = data.get('password')
+
+    await axios.post(baseurl,{email,password})
+      .then((res) => {
+        console.log(res.data);
+
+        localStorage.setItem('jwt',res.data.token)
+        if(res.status===200 && loginAs==='requester')
+        {
+          router.push('dashboardRequester/pending')
+        }
+        else
+        {
+          router.push('dashboardApprover/pending')
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
+  };
+  
+  const handleChange = (event) => {
+    setLoginAs(event.target.value);
   };
 
   return (
@@ -71,6 +106,7 @@ export default function Login() {
       <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
         <Grid
+          item
           md={7}
           sx={{
             backgroundImage: 'url(https://www.juit.ac.in/galleryimages/2fc4ef03fc5b87a1a44dbcda5bfc0254.jpg)',
@@ -99,14 +135,16 @@ export default function Login() {
             <Typography component="h1" variant="h5">
               Login
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <Box component="form" noValidate onSubmit={authHandler} sx={{ mt: 1 }}>
               
               <FormControl>
                 <FormLabel id="demo-radio-buttons-group-label">Login As</FormLabel>
                 <RadioGroup
-                  aria-labelledby="demo-radio-buttons-group-label"
+                  aria-labelledby="demo-radio-buttons-group-label-option"
                   defaultValue="requester"
                   name="radio-buttons-group"
+                  value={loginAs}
+                  onChange={handleChange}
                 >
                   <FormControlLabel value="requester" control={<Radio />} label="Requester" />
                   <FormControlLabel value="approver" control={<Radio />} label="Approver" />

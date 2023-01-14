@@ -1,26 +1,48 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import { Card, CardActionArea, CardContent, Typography } from '@mui/material'
 
-export default function MultiActionAreaCard() {
+export default function CardReviewer() {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <div className='m-2.5'>
+      <Card sx={{ maxWidth: 500, bgcolor:'#CBD5E1'}}>
       <CardActionArea>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
+          <div className='flex justify-center'>
+            <Typography gutterBottom variant="h5" component="div">
+              Event Brief
+            </Typography>
+          </div>
+          <div className='flex flex-row space-x-16 mb-5'>
+            <div className='basis-1/2'>
+              <Typography variant="body2" color="text.secondary">
+                BookingID
+              </Typography>
+            </div>
+            <div className='basis-1/2 text-right'>
+              <Typography variant="body2" color="text.secondary">
+                Room No.
+              </Typography>
+            </div>
+          </div>
+          <div className='flex flex-row space-x-24'>
+            <div className='basis-1/3'>
+              <Typography variant="body2" color="text.secondary">
+                Date
+              </Typography>
+            </div>
+            <div className='basis-1/3'>
+              <Typography variant="body2" color="text.secondary">
+                Hr:Min - Hr:Min
+              </Typography>
+            </div>
+            <div className='basis-1/3'>
+              <Typography variant="body2" color="text.secondary">
+                Hr:Min - Hr:Min
+              </Typography>
+            </div>
+          </div>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button className='hover:bg-' variant="contained" >Deny</Button>
-      </CardActions>
     </Card>
+    </div>
   );
 }

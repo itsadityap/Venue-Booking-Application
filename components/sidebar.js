@@ -1,11 +1,9 @@
-import React from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Disclosure } from "@headlessui/react";
 import {
   MdDoneOutline,
   MdPendingActions,
-  MdOutlineLogout,
-  MdCreate
+  MdOutlineLogout,MdCreate
 } from "react-icons/md";
 import { IoMdListBox } from "react-icons/io";
 import Link from "next/link";
