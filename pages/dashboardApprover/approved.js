@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import SideNavbar2 from '../../components/sidebar2'
-import CardApprover from '../../components/CardReviewer'
+import CardRequester from '../../components/CardRequester'
 
 const approved = () => {
   return (
@@ -16,7 +16,8 @@ const approved = () => {
         <SideNavbar2 />
       </div>
       <div className='flex flex-row flex-wrap ml-64 mt-5 items-center rounded-full'>
-        <CardApprover />
+        <CardRequester />
+        <CardRequester />
       </div>
     </div>
   )

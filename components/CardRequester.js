@@ -40,6 +40,11 @@ export default function CardReviewer() {
               </Typography>
             </div>
           </div>
+          <div className='text-center m-2'>
+            <Typography variant='body2' color='text.secondary'>
+              Equipments required
+            </Typography>
+          </div>
         </CardContent>
       </CardActionArea>
     </Card>

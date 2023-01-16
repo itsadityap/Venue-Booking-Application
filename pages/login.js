@@ -73,8 +73,12 @@ export default function Login() {
     await axios.post(baseurl,{email,password})
       .then((res) => {
         console.log(res.data);
+        
+        if(typeof document !== 'undefined')
+        {
+            document.cookie = `jwt=${res.data.token}`
+        }
 
-        localStorage.setItem('jwt',res.data.token)
         if(res.status===200 && loginAs==='requester')
         {
           router.push('dashboardRequester/pending')

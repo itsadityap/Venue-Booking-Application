@@ -19,7 +19,7 @@ export default function Page404() {
     useEffect(() => {
       setTimeout(() => 
       {
-        router.push('/')
+        router.push('/login')
       }, 4000)
     }, [])
   return (

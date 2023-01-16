@@ -12,3 +12,19 @@
 Schema Design
 
 ![1](https://storage-aditya.s3.ap-south-1.amazonaws.com/SchemaDesign.png)
+
+Website Snapshots
+
+![2](https://storage-aditya.s3.ap-south-1.amazonaws.com/Booking/Home1.png)
+
+![3](https://storage-aditya.s3.ap-south-1.amazonaws.com/Booking/Home2.png)
+
+![4](https://storage-aditya.s3.ap-south-1.amazonaws.com/Booking/Home3.png)
+
+![5](https://storage-aditya.s3.ap-south-1.amazonaws.com/Booking/Home4.png)
+
+![6](https://storage-aditya.s3.ap-south-1.amazonaws.com/Booking/Home5.png)
+
+![7](https://storage-aditya.s3.ap-south-1.amazonaws.com/Booking/Home6.png)
+
+![7](https://storage-aditya.s3.ap-south-1.amazonaws.com/Booking/Home7.png)
