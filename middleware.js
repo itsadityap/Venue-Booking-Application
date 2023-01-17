@@ -1,43 +1,48 @@
-import jose from 'jose'
+import * as jose from 'jose'
 import { NextResponse } from 'next/server'
 
 const secret = process.env.SECRET
 
 export default function middleware(req){
 
-    let token;
-
-    if(typeof document !== 'undefined')
-    {
-        token = document.localStorage.getItem('jwt')
-    }
-    //console.log(token);
-
+    const cookie = req?.cookies?.get('jwt');
     const url = req.nextUrl.href;
-    console.log(url);
+    let userType = ''
 
-    if(url.includes('dashboardApprover') || url.includes('dashboardRequester'))
+    if(cookie?.value !== undefined)
     {
-
-        if(token === undefined || token === null)
-        {
-            let uri = 'http://localhost:3000/login'
-            return NextResponse.redirect(uri);
-        }
-
         try
         {
-            const payload = jose.JWT.verify(jwt,secret,{algorithms: ['HS256']})
-            console.log(payload);
-            if(payload)
-            return NextResponse.next();
+            const dec = jose.decodeJwt(cookie?.value, secret)
+            userType = dec?.userType
         }
         catch(err)
         {
-            let uri = 'http://localhost:3000/login'
-            return NextResponse.redirect(uri);
+            console.log('err',err);
+        }
+
+        if(url.includes('dashboardApprover') || url.includes('dashboardRequester)'))
+        {
+            if(userType === 'User')
+            {
+                let uri = 'http://localhost:3000/dashboardRequester/pending'
+                return NextResponse.redirect(uri);
+            }
+            else if(userType === 'Reviewer')
+            {
+                let uri = 'http://localhost:3000/dashboardApprover/pending'
+                return NextResponse.redirect(uri);
+            }
+            else
+            {
+                let uri = 'http://localhost:3000/login'
+                return NextResponse.redirect(uri);
+            }
         }
     }
-
     return NextResponse.next();
+}
+
+export const config = {
+    matcher: ['/dashboardApprover/:path*','/dashboardRequester/:path*']
 }

@@ -17,7 +17,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Head from 'next/head';
 import { useState } from 'react';
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router';
 import axios from 'axios';
 
 function Copyright(props) {
@@ -79,13 +79,13 @@ export default function Login() {
             document.cookie = `jwt=${res.data.token}`
         }
 
-        if(res.status===200 && loginAs==='requester')
-        {
-          router.push('dashboardRequester/pending')
+        if(loginAs==='requester')
+        { 
+            router.push('/dashboardRequester/pending')
         }
         else
         {
-          router.push('dashboardApprover/pending')
+            router.push('/dashboardApprover/pending')
         }
       }).catch((err) => {
         console.log(err)
