@@ -9,6 +9,12 @@ export default function middleware(req){
     const url = req.nextUrl.href;
     let userType = ''
 
+    if(!cookie)
+    {
+        let uri = 'http://localhost:3000/login'
+        return NextResponse.redirect(uri);
+    }
+
     if(cookie?.value !== undefined)
     {
         try

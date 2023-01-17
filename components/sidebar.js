@@ -7,8 +7,20 @@ import {
 } from "react-icons/md";
 import { IoMdListBox } from "react-icons/io";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 function SideNavbar() {
+  
+    const router = useRouter();
+    const logoutHandler = () => {
+
+      if(typeof window !== 'undefined')
+      {
+          document.cookie = 'jwt' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      }
+      router.push('/login');
+  }
+  
   return (
     <div>
       <Disclosure as="nav">
@@ -61,9 +73,9 @@ function SideNavbar() {
               </div>
 
             </div>
-            <div className=" my-4">
+            <div className=" my-4" onClick={logoutHandler}>
               <div className="flex mb-2 justify-start items-center gap-4 pl-5 border border-gray-200  hover:bg-rose-500 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <MdOutlineLogout className="text-2xl text-gray-600 group-hover:text-white " />
+                <MdOutlineLogout className="text-2xl text-gray-600 group-hover:text-white "/>
                 <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
                   Logout
                 </h3>
