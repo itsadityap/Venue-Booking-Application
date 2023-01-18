@@ -20,7 +20,12 @@ function SideNavbar() {
       }
       router.push('/login');
   }
-  
+
+  const pagePresent1 = router.pathname.includes('dashboardRequester/create');
+  const pagePresent2 = router.pathname.includes('dashboardRequester/pending');
+  const pagePresent3 = router.pathname.includes('dashboardRequester/approved');
+  const pagePresent4 = router.pathname.includes('dashboardRequester/all');
+
   return (
     <div>
       <Disclosure as="nav">
@@ -36,41 +41,53 @@ function SideNavbar() {
               Venue Booking Portal
             </h1>
             <div className=" my-4 border-b border-gray-100 pb-4">
-              <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <MdCreate className="text-2xl text-gray-600 group-hover:text-white " />
-                <Link href="/dashboardRequester/create">
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
-                  Create Requests
-                </h3>
-                </Link>
+              {(
+              <div className={`${pagePresent1 === true ? 'flex mb-2 justify-start items-center gap-4 pl-5 bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto': 'flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto hover:text-white'}`}>
+                  <MdCreate className={`${pagePresent1 === true ? 'text-2xl text-white' :'text-gray-600 text-2xl group-hover:text-white'}`}/>
+                  <Link href="/dashboardRequester/create">
+                  <h3 className= {`${pagePresent1 === true?'text-base text-white font-semibold': 'text-base text-gray-600 group-hover:text-white'}`}>
+                    Create Requests
+                  </h3>
+                  </Link>
               </div>
-              
-              <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <MdPendingActions className="text-2xl text-gray-600 group-hover:text-white " />
-                <Link href="/dashboardRequester/pending">
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
-                  Pending Requests
-                </h3>
-                </Link>
-              </div>
+              )}
+              {
+                (
+                  <div className={`${pagePresent2 === true ? 'flex mb-2 justify-start items-center gap-4 pl-5 bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto': 'flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto'}`}>
+                    <MdPendingActions className={`${pagePresent2 === true ? 'text-2xl text-white' :'text-gray-600 text-2xl group-hover:text-white'}`}/>
+                    <Link href="/dashboardRequester/pending">
+                    <h3 className={`${pagePresent2 === true?'text-base text-white font-semibold': 'text-base text-gray-600 group-hover:text-white'}`}>
+                      Pending Requests
+                    </h3>
+                    </Link>
+                  </div>
+                )
+              }
+              {
+                (
+                  <div className={`${pagePresent3 === true ? 'flex mb-2 justify-start items-center gap-4 pl-5 bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto': 'flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto'}`}>
+                    <MdDoneOutline className={`${pagePresent3 === true ? 'text-2xl text-white' :'text-gray-600 text-2xl group-hover:text-white'}`}/>
+                    <Link href="/dashboardRequester/approved">
+                    <h3 className={`${pagePresent3 === true?'text-base text-white font-semibold': 'text-base text-gray-600 group-hover:text-white'}`}>
+                      Approved Requests
+                    </h3>
+                    </Link>
+                  </div>
+                )
+              }
 
-              <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <MdDoneOutline className="text-2xl text-gray-600 group-hover:text-white " />
-                <Link href="/dashboardRequester/approved">
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
-                  Approved Requests
-                </h3>
-                </Link>
-              </div>
-
-              <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <IoMdListBox className="text-2xl text-gray-600 group-hover:text-white " />
-                <Link href="/dashboardRequester/all">
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
-                  All Requests
-                </h3>
-                </Link>
-              </div>
+              {
+                (
+                  <div className={`${pagePresent4 === true ? 'flex mb-2 justify-start items-center gap-4 pl-5 bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto': 'flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto'}`}>
+                    <IoMdListBox className={`${pagePresent4 === true ? 'text-2xl text-white' :'text-gray-600 text-2xl group-hover:text-white'}`}/>
+                    <Link href="/dashboardRequester/all">
+                    <h3 className={`${pagePresent4 === true?'text-base text-white font-semibold': 'text-base text-gray-600 group-hover:text-white'}`}>
+                      All Requests
+                    </h3>
+                    </Link>
+                  </div>
+                )
+              }
 
             </div>
             <div className=" my-4" onClick={logoutHandler}>

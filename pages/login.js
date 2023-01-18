@@ -17,7 +17,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Head from 'next/head';
 import { useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
 function Copyright(props) {
@@ -85,7 +85,11 @@ export default function Login() {
         }
         else
         {
-            router.push('/dashboardApprover/pending')
+          if(typeof window !== undefined)
+          {
+            window.location.href='/dashboardApprover/pending'
+          }
+          router.push('/dashboardApprover/pending')
         }
       }).catch((err) => {
         console.log(err)

@@ -7,8 +7,23 @@ import {
 } from "react-icons/md";
 import { IoMdListBox } from "react-icons/io";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 function SideNavbar() {
+
+  const router = useRouter();
+    const logoutHandler = () => {
+
+      if(typeof window !== 'undefined')
+      {
+          document.cookie = 'jwt' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      }
+      router.push('/login');
+  }
+  const pagePresent2 = router.pathname.includes('dashboardApprover/pending');
+  const pagePresent3 = router.pathname.includes('dashboardApprover/approved');
+  const pagePresent4 = router.pathname.includes('dashboardApprover/all');
+
   return (
     <div>
       <Disclosure as="nav">
@@ -25,34 +40,48 @@ function SideNavbar() {
               Venue Booking Portal
             </h1>
             <div className=" my-4 border-b border-gray-100 pb-4">
-              <Link href="/dashboardApprover/pending">
-              <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <MdPendingActions className="text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
-                  Pending Requests
-                </h3>
-              </div>
-              </Link>
-              <Link href="/dashboardApprover/approved">
-              <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <MdDoneOutline className="text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
-                  Approved Requests
-                </h3>
-              </div>
-              </Link>
-              <Link href="/dashboardApprover/all">
-              <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <IoMdListBox className="text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
-                  All Requests
-                </h3>
-              </div>
-              </Link>
+            {
+                (
+                  <div className={`${pagePresent2 === true ? 'flex mb-2 justify-start items-center gap-4 pl-5 bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto': 'flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto'}`}>
+                    <MdPendingActions className={`${pagePresent2 === true ? 'text-2xl text-white' :'text-gray-600 text-2xl group-hover:text-white'}`}/>
+                    <Link href="/dashboardApprover/pending">
+                    <h3 className={`${pagePresent2 === true?'text-base text-white font-semibold': 'text-base text-gray-600 group-hover:text-white'}`}>
+                      Pending Requests
+                    </h3>
+                    </Link>
+                  </div>
+                )
+              }
+              {
+                (
+                  <div className={`${pagePresent3 === true ? 'flex mb-2 justify-start items-center gap-4 pl-5 bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto': 'flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto'}`}>
+                    <MdDoneOutline className={`${pagePresent3 === true ? 'text-2xl text-white' :'text-gray-600 text-2xl group-hover:text-white'}`}/>
+                    <Link href="/dashboardApprover/approved">
+                    <h3 className={`${pagePresent3 === true?'text-base text-white font-semibold': 'text-base text-gray-600 group-hover:text-white'}`}>
+                      Approved Requests
+                    </h3>
+                    </Link>
+                  </div>
+                )
+              }
+
+              {
+                (
+                  <div className={`${pagePresent4 === true ? 'flex mb-2 justify-start items-center gap-4 pl-5 bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto': 'flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto'}`}>
+                    <IoMdListBox className={`${pagePresent4 === true ? 'text-2xl text-white' :'text-gray-600 text-2xl group-hover:text-white'}`}/>
+                    <Link href="/dashboardApprover/all">
+                    <h3 className={`${pagePresent4 === true?'text-base text-white font-semibold': 'text-base text-gray-600 group-hover:text-white'}`}>
+                      All Requests
+                    </h3>
+                    </Link>
+                  </div>
+                )
+              }
+
             </div>
-            <div className=" my-4">
+            <div className=" my-4" onClick={logoutHandler}>
               <div className="flex mb-2 justify-start items-center gap-4 pl-5 border border-gray-200  hover:bg-rose-500 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <MdOutlineLogout className="text-2xl text-gray-600 group-hover:text-white " />
+                <MdOutlineLogout className="text-2xl text-gray-600 group-hover:text-white "/>
                 <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
                   Logout
                 </h3>

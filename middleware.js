@@ -14,30 +14,28 @@ export default function middleware(req){
         let uri = 'http://localhost:3000/login'
         return NextResponse.redirect(uri);
     }
-
-    if(cookie?.value !== undefined)
+    if(cookie?.value)
     {
-        try
-        {
-            const dec = jose.decodeJwt(cookie?.value, secret)
-            userType = dec?.userType
-        }
-        catch(err)
-        {
-            console.log('err',err);
-        }
+        const dec = jose.decodeJwt(cookie?.value, secret)
+        userType = dec?.userType
 
-        if(url.includes('dashboardApprover') || url.includes('dashboardRequester)'))
+        if(url.includes('dashboardRequester'))
         {
             if(userType === 'User')
             {
-                let uri = 'http://localhost:3000/dashboardRequester/pending'
+                return NextResponse.next()
+            }
+            else
+            {
+                let uri = 'http://localhost:3000/login'
                 return NextResponse.redirect(uri);
             }
-            else if(userType === 'Reviewer')
+        }
+        else
+        {
+            if(userType === 'Reviewer')
             {
-                let uri = 'http://localhost:3000/dashboardApprover/pending'
-                return NextResponse.redirect(uri);
+                return NextResponse.next()
             }
             else
             {
@@ -50,5 +48,5 @@ export default function middleware(req){
 }
 
 export const config = {
-    matcher: ['/dashboardApprover/:path*','/dashboardRequester/:path*']
+    matcher: ['/dashboardRequester/(.*)','/dashboardApprover/(.*)']
 }
