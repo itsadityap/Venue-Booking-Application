@@ -12,6 +12,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Fragment } from 'react';
 import { AcademicCapIcon } from '@heroicons/react/solid';
 import Head from 'next/head';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 function Copyright(props) {
   return (
@@ -43,12 +46,71 @@ const lightTheme = createTheme({
 });
 
 export default function SignUpRequester() {
+
+  const notifyError = () => toast.error('Error in Signing you Up🤨, Please Check if your passwords match or you email is in correct format!', {
+    position: "top-right",
+    autoClose: 6000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    });
+
+    const notifySuccess = () => toast.success('Signup Successfull🥳, redirecting you to login page', {
+      position: "top-right",
+      autoClose: 6000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+    const notifyErrorAlreadySignup = () => toast.error('Error in Signing you Up🤨, You are already signed up!', {
+      position: "top-right",
+      autoClose: 6000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+    let email = data.get('email');
+    let password = data.get('password');
+    let full_name = data.get('name');
+    let batch = data.get('batch');
+    let cnfpassword = data.get('confirmpassword');
+
+    axios.post(`${process.env.NEXT_PUBLIC_BASEURLLOCAL}user/signup`,{email,password,full_name,batch})
+    .then((res) => {
+      if(res.status === 200 && cnfpassword === password)
+      {
+        notifySuccess();
+        setTimeout(() => {
+          window.location.href = '/login';
+        }, 2000);
+      }
+      else
+      {
+        notifyError();
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      if(err.response.status === 400)
+      {
+        notifyErrorAlreadySignup();
+      }
+      else
+      notifyError();
     });
   };
 
@@ -148,13 +210,13 @@ export default function SignUpRequester() {
               Sign Up
             </Button>
               <RedirectLogin sx={{ mt: 4 }} />
-              
               <Copyright sx={{ mt: 4 }} />
             </Box>
           </Box>
         </Grid>
       </Grid>
     </ThemeProvider>
+    <ToastContainer />
     </Fragment>
   );
 }

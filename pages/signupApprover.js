@@ -12,6 +12,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Fragment } from 'react';
 import { LibraryIcon } from '@heroicons/react/solid';
 import Head from 'next/head';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Copyright(props) {
   return (
@@ -42,13 +45,74 @@ const lightTheme = createTheme({
   },
 });
 
-export default function SignUpApprover() {
-  const handleSubmit = (event) => {
+export default function SignUpApprover() 
+{
+  const notifyError = () => toast.error('Error in Signing you Up🤨, Please Check if your passwords match or you email is in correct format!', {
+    position: "top-right",
+    autoClose: 6000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    });
+
+  const notifySuccess = () => toast.success('Signup Successful🥳, redirecting you to login page', {
+      position: "top-right",
+      autoClose: 6000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+  const notifyErrorAlreadySignup = () => toast.error('Error in Signing you Up🤨, You are already signed up!', {
+      position: "top-right",
+      autoClose: 6000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+  const handleSubmit = async (event) => 
+  {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+  
+    let email = data.get('email');
+    let password = data.get('password');
+    let cnfpassword = data.get('confirmpassword');
+    let designation = data.get('designation');
+    let full_name = data.get('name');
+
+    await axios.post(`${process.env.NEXT_PUBLIC_BASEURLLOCAL}reviewer/signup`, 
+    {email,password,full_name,designation}).then((res) => {
+      if(res.status === 200 && cnfpassword === password)
+      {
+        notifySuccess();
+        setTimeout(() => {
+          window.location.href = '/login';
+        }, 2000);
+      }
+      else
+      {
+        notifyError();
+      }
+    }).
+      catch((err) => 
+      {
+      if(err.response.status === 400)
+      {
+        notifyErrorAlreadySignup();
+      }
+      else
+      notifyError();
     });
   };
 
@@ -156,6 +220,7 @@ export default function SignUpApprover() {
         </Grid>
       </Grid>
     </ThemeProvider>
+    <ToastContainer />
     </div>
     </Fragment>
   );

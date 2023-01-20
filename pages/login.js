@@ -17,8 +17,9 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Head from 'next/head';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Copyright(props) {
   return (
@@ -51,8 +52,29 @@ const lightTheme = createTheme({
 
 export default function Login() {
 
+  const notifyError = (param1) => toast.error(`${param1}`, {
+    position: "top-right",
+    autoClose: 6000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    });
+
+  const notifySuccess = () => toast.success('SignIn Successful🥳, redirecting you to dashboard', {
+      position: "top-right",
+      autoClose: 6000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
   const [ loginAs , setLoginAs ] = useState('requester');
-  const router = useRouter();
 
   const authHandler = async (event) => {
     event.preventDefault();
@@ -61,11 +83,11 @@ export default function Login() {
 
     if(loginAs==='requester')
     {
-       baseurl = `http://localhost:4000/api/v1/user/login`
+       baseurl = `${process.env.NEXT_PUBLIC_BASEURLLOCAL}user/login`
     }
     else
     {
-       baseurl = `http://localhost:4000/api/v1/reviewer/login`
+       baseurl = `${process.env.NEXT_PUBLIC_BASEURLLOCAL}reviewer/login`
     }
     let email = data.get('email')
     let password = data.get('password')
@@ -78,20 +100,32 @@ export default function Login() {
         {
             document.cookie = `jwt=${res.data.token}`
         }
-
         if(loginAs==='requester')
         { 
-            router.push('/dashboardRequester/pending')
+          notifySuccess()
+          setTimeout(() => {
+          window.location.href='/dashboardRequester/pending'
+          }, 2100);
         }
         else
         {
           if(typeof window !== undefined)
           {
+            notifySuccess()
+            setTimeout(() => {
             window.location.href='/dashboardApprover/pending'
+            }, 2100);
           }
-          router.push('/dashboardApprover/pending')
         }
       }).catch((err) => {
+        if(err.response.status===401)
+        {
+          notifyError('Invalid Credentials, Cannot log you in 🤨, Please try again and check your password')
+        }
+        else
+        {
+          notifyError('Something went wrong, Cannot log you in!🤨, Or you are not registered yet')
+        }
         console.log(err)
       })
   };
@@ -191,6 +225,7 @@ export default function Login() {
       </Grid>
     </ThemeProvider>
     </div>
+    <ToastContainer />
     </Fragment>
   );
 }

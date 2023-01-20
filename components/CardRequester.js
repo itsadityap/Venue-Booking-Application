@@ -1,6 +1,7 @@
 import { Card, CardActionArea, CardContent, Typography } from '@mui/material'
 
-export default function CardReviewer() {
+export default function CardRequester(props) 
+  {
   return (
     <div className='m-2.5'>
       <Card sx={{ maxWidth: 500, bgcolor:'#CBD5E1'}}>
@@ -8,41 +9,46 @@ export default function CardReviewer() {
         <CardContent>
           <div className='flex justify-center'>
             <Typography gutterBottom variant="h5" component="div">
-              Event Brief
+              {props.eventBrief}
             </Typography>
           </div>
           <div className='flex flex-row space-x-16 mb-5'>
             <div className='basis-1/2'>
               <Typography variant="body2" color="text.secondary">
-                BookingID
+                {props.booking_id}
               </Typography>
             </div>
             <div className='basis-1/2 text-right'>
               <Typography variant="body2" color="text.secondary">
-                Room No.
+                {props.room}
               </Typography>
             </div>
           </div>
           <div className='flex flex-row space-x-24'>
             <div className='basis-1/3'>
               <Typography variant="body2" color="text.secondary">
-                Date
+                {props.date}
               </Typography>
             </div>
             <div className='basis-1/3'>
               <Typography variant="body2" color="text.secondary">
-                Hr:Min - Hr:Min
+                {`${props.time_start_hours} : ${props.time_start_minutes}`}
               </Typography>
             </div>
             <div className='basis-1/3'>
               <Typography variant="body2" color="text.secondary">
-                Hr:Min - Hr:Min
+                {`${props.time_end_hours} : ${props.time_end_minutes}`}
               </Typography>
             </div>
           </div>
           <div className='text-center m-2'>
             <Typography variant='body2' color='text.secondary'>
-              Equipments required
+              {props.equipmentRequired}
+            </Typography>
+          </div>
+          <div className='text-center m-2'>
+            <Typography variant='body2' color='text.secondary'>
+              {props.bookingStatus}
             </Typography>
           </div>
         </CardContent>
