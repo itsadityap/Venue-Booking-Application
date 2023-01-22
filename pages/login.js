@@ -94,7 +94,6 @@ export default function Login() {
 
     await axios.post(baseurl,{email,password})
       .then((res) => {
-        console.log(res.data);
         
         if(typeof document !== 'undefined')
         {
