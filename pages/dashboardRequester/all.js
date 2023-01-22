@@ -4,10 +4,10 @@ import Head from 'next/head'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 
-const dashboardRequester = () => {
+const DashboardRequester = () => {
 
-  const [data, setData] = useState([]);
   let cookie = ''
+  const [data, setData] = useState([]);
 
   useEffect(() => {
   const fetcher = async () => {
@@ -64,4 +64,4 @@ const dashboardRequester = () => {
   )
 }
 
-export default dashboardRequester
+export default DashboardRequester

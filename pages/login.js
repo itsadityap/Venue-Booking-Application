@@ -97,14 +97,14 @@ export default function Login() {
         
         if(typeof document !== 'undefined')
         {
-            document.cookie = `jwt=${res.data.token}`
+            document.cookie = `jwt=${res.data.token};path=/`
         }
         if(loginAs==='requester')
         { 
           notifySuccess()
           setTimeout(() => {
           window.location.href='/dashboardRequester/pending'
-          }, 2100);
+          }, 4500);
         }
         else
         {
@@ -113,7 +113,7 @@ export default function Login() {
             notifySuccess()
             setTimeout(() => {
             window.location.href='/dashboardApprover/pending'
-            }, 2100);
+            }, 4500);
           }
         }
       }).catch((err) => {

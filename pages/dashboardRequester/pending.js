@@ -4,10 +4,10 @@ import CardRequester from '../../components/CardRequester'
 import Head from 'next/head'
 import axios from 'axios'
 
-const pending = () => {
+const Pending = () => {
 
-  const [data, setData] = useState([]);
   let cookie = ''
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetcher = async () => {
@@ -67,4 +67,4 @@ const pending = () => {
   )
 }
 
-export default pending
+export default Pending

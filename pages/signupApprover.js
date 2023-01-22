@@ -98,7 +98,7 @@ export default function SignUpApprover()
         notifySuccess();
         setTimeout(() => {
           window.location.href = '/login';
-        }, 2000);
+        }, 1000);
       }
       else
       {

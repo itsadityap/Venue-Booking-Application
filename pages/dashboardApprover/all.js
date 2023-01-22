@@ -4,8 +4,10 @@ import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Loader from '../../components/Loader'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const dashBoardApprover = () => {
+const DashBoardApprover = () => {
 
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true)
@@ -71,8 +73,9 @@ const dashBoardApprover = () => {
           })
         }
       </div>
+      <ToastContainer />
     </div>
   )
 }
 
-export default dashBoardApprover
+export default DashBoardApprover

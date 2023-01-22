@@ -6,8 +6,8 @@ import axios from 'axios'
 
 const Pending = () => {
 
-  const [data, setData] = useState([]);
   let cookie = ''
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetcher = async () => {

@@ -4,10 +4,10 @@ import CardRequester from '../../components/CardRequester'
 import Head from 'next/head'
 import axios from 'axios'
 
-const approved = () => {
+const Approved = () => {
 
-  const [data, setData] = useState([]);
   let cookie = ''
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetcher = async () => {
@@ -67,4 +67,4 @@ const approved = () => {
   )
 }
 
-export default approved
+export default Approved

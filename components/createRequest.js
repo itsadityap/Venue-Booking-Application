@@ -39,6 +39,7 @@ export default function FormDialog()
     theme: "light",
   });
 
+  let cookie = ''
   const [open, setOpen] = useState(false);
   const [starttimehour, setstarttimehour] = useState();
   const [endtimehour, setendtimehour] = useState();
@@ -53,7 +54,6 @@ export default function FormDialog()
   const [club, setclub] = useState('')
   const [eventbrief , seteventbrief] = useState('')
 
-  let cookie = ''
   const [requesterName, setrequesterName] = useState([])
 
   const handleChange1 = (event) => {
@@ -165,6 +165,8 @@ export default function FormDialog()
           notifySuccessRequest('Your Request is Created Successfully🥳')
           handleClose()
         }
+        else if(response.status === 403)
+        notifyError('There is already a request for this room at this time.⏲️')
         else
         notifyError('Something Went Wrong😢')
       })
@@ -434,7 +436,7 @@ export default function FormDialog()
               >
                 { 
                   requesterName.map((name) => (
-                    <MenuItem value={name.id}>{name.Name}</MenuItem>
+                    <MenuItem key={name.id} value={name.id}>{name.Name}</MenuItem>
                   ))
                 }
               </Select>

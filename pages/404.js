@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import { styled } from '@mui/material/styles';
 import { Typography, Container, Box } from '@mui/material';
 import { useEffect } from 'react';
@@ -14,12 +13,11 @@ const StyledContent = styled('div')(({ theme }) => ({
 }));
 
 export default function Page404() {
-    const router = useRouter()
 
     useEffect(() => {
       setTimeout(() => 
       {
-        router.push('/login')
+        window.location.href = '/login'
       }, 4000)
     }, [])
   return (
