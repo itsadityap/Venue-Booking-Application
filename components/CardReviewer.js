@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const CardReviewer = (props) => {
-
+  console.log('props', props);
   let cookie = ''
   const notifySuccessRequest = (param1) => toast.success(`${param1}`, {
     position: "top-right",
@@ -35,7 +35,6 @@ const CardReviewer = (props) => {
       {
         cookie = document.cookie.split('=')[1]
       }
-      console.log('cookie', cookie);
       await axios.post(`${process.env.NEXT_PUBLIC_BASEURLLOCAL}deny`,{
         "booking_id": `${props.booking_id}`
       },
@@ -43,8 +42,6 @@ const CardReviewer = (props) => {
         headers: {'Authorization': `Bearer ${cookie}`}
       }
       ).then((res) => {
-        console.log('res', res)
-
         if(res.status === 200)
         {
           notifySuccessRequest('Booking Denied Successfully✅')
@@ -90,7 +87,6 @@ const CardReviewer = (props) => {
         headers : {'Authorization': `Bearer ${cookie}`}
       }
       ).then((res) => {
-        console.log('res', res)
 
         if(res.status === 200)
         {

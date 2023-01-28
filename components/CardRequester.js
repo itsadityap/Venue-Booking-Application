@@ -1,16 +1,22 @@
 import { Card, CardActionArea, CardContent, Typography } from '@mui/material'
+import LongMenu from './ThreeDotOptions'
 
 export default function CardRequester(props) 
-  {
+{
   return (
     <div className='m-2.5'>
       <Card sx={{ maxWidth: 500, bgcolor:'#CBD5E1'}}>
       <CardActionArea>
         <CardContent>
-          <div className='flex justify-center'>
-            <Typography gutterBottom variant="h5" component="div">
-              {props.eventBrief}
-            </Typography>
+          <div className='flex flex-row'>
+            <div className='flex justify-center'>
+              <Typography gutterBottom variant="h5" component="div">
+                {props.eventBrief}
+              </Typography>
+            </div>
+            <div className='flex justify-end'>
+              <LongMenu booking_id = {props.booking_id}/>
+            </div>
           </div>
           <div className='flex flex-row space-x-16 mb-5'>
             <div className='basis-1/2'>
