@@ -46,15 +46,12 @@ export default function LongMenu(props)
     const deleteRequest = async () => 
     {
       let idBooking = { "booking_id" : `${props.booking_id}` }
-      console.log(idBooking);
       try
       {
         if(typeof document !== 'undefined')
         {
             cookie = document.cookie.split('=')[1]
         }
-        
-        console.log(cookie);
           await axios.post(`${process.env.NEXT_PUBLIC_BASEURLLOCAL}deleteRequest`,
           { "booking_id" : `${props.booking_id}` },
           {
@@ -63,7 +60,6 @@ export default function LongMenu(props)
           )
           .then((res)=>
           {
-              console.log(res);
               notifySuccessRequest('Booking Deleted Successfully✅')
               handleClose()
               setTimeout(() => {
@@ -84,7 +80,6 @@ export default function LongMenu(props)
       catch(err)
       {
         notifyError('Something went wrong❌')
-        console.log(err);
       }
     }
 

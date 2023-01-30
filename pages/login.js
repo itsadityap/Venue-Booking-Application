@@ -104,7 +104,7 @@ export default function Login() {
           notifySuccess()
           setTimeout(() => {
           window.location.href='/dashboardRequester/pending'
-          }, 4500);
+          }, 1600);
         }
         else
         {
@@ -113,7 +113,7 @@ export default function Login() {
             notifySuccess()
             setTimeout(() => {
             window.location.href='/dashboardApprover/pending'
-            }, 4500);
+            }, 1600);
           }
         }
       }).catch((err) => {

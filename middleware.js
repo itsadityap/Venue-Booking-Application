@@ -11,8 +11,9 @@ export default function middleware(req){
 
     if(!cookie)
     {
-        let uri = 'http://localhost:3000/login'
-        return NextResponse.redirect(uri);
+        const url = req.nextUrl.clone()
+        url.pathname = '/login'
+        return NextResponse.redirect(url);
     }
     if(cookie?.value)
     {
@@ -27,8 +28,9 @@ export default function middleware(req){
             }
             else
             {
-                let uri = 'http://localhost:3000/login'
-                return NextResponse.redirect(uri);
+                const url = req.nextUrl.clone()
+                url.pathname = '/login'
+                return NextResponse.redirect(url);
             }
         }
         else
@@ -39,8 +41,9 @@ export default function middleware(req){
             }
             else
             {
-                let uri = 'http://localhost:3000/login'
-                return NextResponse.redirect(uri);
+                const url = req.nextUrl.clone()
+                url.pathname = '/login'
+                return NextResponse.redirect(url);
             }
         }
     }
