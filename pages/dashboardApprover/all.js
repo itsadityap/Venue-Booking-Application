@@ -51,7 +51,7 @@ const DashBoardApprover = () => {
         <SideNavbar2 />
       </div>
       
-      <div className='flex flex-row flex-wrap ml-64 mt-5 items-center'>
+      <div className='flex flex-row flex-wrap lg:ml-64 mt-5 items-center'>
         {
           isLoading ? <Loader /> :
           data.map((item) => {

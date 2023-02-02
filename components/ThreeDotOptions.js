@@ -15,7 +15,7 @@ export default function LongMenu(props)
     let cookie = ''
     const notifySuccessRequest = (param1) => toast.success(`${param1}`, {
       position: "top-right",
-      autoClose: 10000,
+      autoClose: 6000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,

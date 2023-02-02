@@ -16,7 +16,7 @@ const Create = () => {
       <div>
         <SideNavbar />
       </div>
-      <div className='flex flex-row flex-wrap ml-64 mt-5'>
+      <div className='flex flex-row flex-wrap lg:ml-64 mt-5'>
         <CreateRequest />
       </div>
     </div>

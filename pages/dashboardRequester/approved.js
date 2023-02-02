@@ -43,7 +43,7 @@ const Approved = () => {
       <div>
         <SideNavbar />
       </div>
-      <div className='flex flex-row flex-wrap ml-64 mt-5 items-center rounded-full'>
+      <div className='flex flex-row flex-wrap lg:ml-64 mt-5 items-center rounded-full'>
         {
           data.map((item) => {
             return (
