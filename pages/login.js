@@ -150,7 +150,7 @@ export default function Login() {
           item
           md={7}
           sx={{
-            backgroundImage: 'url(https://www.juit.ac.in/galleryimages/2fc4ef03fc5b87a1a44dbcda5bfc0254.jpg)',
+            backgroundImage: 'url(https://storage-aditya.s3.ap-south-1.amazonaws.com/DJI_0177.JPG)',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
             backgroundSize: 'cover',

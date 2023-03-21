@@ -129,7 +129,7 @@ export default function SignUpRequester() {
         <Grid
           md={7}
           sx={{
-            backgroundImage: 'url(https://www.juit.ac.in/galleryimages/b9330a7f13436b4423a4252f561f883e.jpg)',
+            backgroundImage: 'url(https://storage-aditya.s3.ap-south-1.amazonaws.com/SUN1168.jpg)',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
             backgroundSize: 'cover',
